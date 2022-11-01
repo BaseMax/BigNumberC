@@ -108,6 +108,20 @@ BigNumber* multiplyBigNumbers(BigNumber *bn1, BigNumber *bn2) {
 }
 
 /**
+ * @brief Deep copy a Big Number
+ * 
+ * @param bn
+ * @return BigNumber* 
+ */
+BigNumber* copyBigNumber(BigNumber *bn) {
+    BigNumber *result = createBigNumber(bn->size);
+    for (int i = 0; i < bn->size; i++) {
+        result->digits[i] = bn->digits[i];
+    }
+    return result;
+}
+
+/**
  * @brief Minus two Big Numbers
  * 
  * @param bn1
