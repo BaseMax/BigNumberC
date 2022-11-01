@@ -21,7 +21,9 @@ BigNumber* createBigNumber(int size) {
  * @param size
  */
 void setBigNumber(BigNumber *bn, int *digits, int size) {
-    bn->digits = digits;
+    for (int i = 0; i < size; i++) {
+        bn->digits[i] = digits[size - i - 1];
+    }
     bn->size = size;
 }
 
@@ -58,6 +60,10 @@ void printBigNumber(BigNumber *bn) {
     for (int i = bn->size - 1; i >= 0; i--) {
         printf("%d", bn->digits[i]);
     }
+    // for (int i = 0; i < bn->size; i++) {
+    //     printf("%d", bn->digits[i]);
+    // }
+
     printf("\n");
 }
 
