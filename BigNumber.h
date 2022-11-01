@@ -1,3 +1,10 @@
+/*
+ * @Name: Big/Huge Number Library
+ * @Author: Max Base
+ * @Date: 2022-11-01
+ * @Repository: https://github.com/BaseMax/BigNumberC
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
