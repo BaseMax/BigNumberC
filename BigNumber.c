@@ -82,7 +82,6 @@ BigNumber* addBigNumbers(BigNumber *bn1, BigNumber *bn2) {
         result->digits[i] = sum % 10;
         carry = sum / 10;
     }
-    result->digits[bn1->size] = carry;
     return result;
 }
 
