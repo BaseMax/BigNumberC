@@ -149,17 +149,19 @@ BigNumber* copyBigNumber(BigNumber *bn) {
  */
 BigNumber* minusBigNumbers(BigNumber *bn1, BigNumber *bn2) {
     BigNumber *result = createBigNumber(bn1->size);
-    int carry = 0;
     for (int i = 0; i < bn1->size; i++) {
-        int sum = bn1->digits[i] - bn2->digits[i] - carry;
-        if (sum < 0) {
-            sum += 10;
-            carry = 1;
-        } else {
-            carry = 0;
-        }
-        result->digits[i] = sum;
+        result->digits[i] = bn1->digits[i];
     }
+    for (int i = 0; i < bn2->size; i++) {
+        result->digits[i] -= bn2->digits[i];
+    }
+    for (int i = 0; i < bn1->size; i++) {
+        if (result->digits[i] < 0) {
+            result->digits[i] += 10;
+            result->digits[i + 1]--;
+        }
+    }
+    while (result->digits[result->size - 1] == 0) result->size--;
     return result;
 }
 
@@ -174,28 +176,13 @@ BigNumber* divideBigNumbers(BigNumber *bn1, BigNumber *bn2) {
     BigNumber *result = createBigNumber(bn1->size);
     BigNumber *temp = createBigNumber(bn1->size);
     for (int i = bn1->size - 1; i >= 0; i--) {
-        for (int j = bn1->size - 1; j > i; j--) {
-            temp->digits[j] = temp->digits[j - 1];
-        }
         temp->digits[i] = bn1->digits[i];
-        int count = 0;
-        while (1) {
-            BigNumber *temp2 = multiplyBigNumbers(bn2, createBigNumber(1));
-            if (temp2->digits[0] > temp->digits[0]) {
-                break;
-            }
-            destroyBigNumber(temp2);
-            count++;
+        while (compareBigNumbers(temp, bn2) >= 0) {
+            temp = minusBigNumbers(temp, bn2);
+            result->digits[i]++;
         }
-        result->digits[i] = count;
-        BigNumber *temp3 = multiplyBigNumbers(bn2, createBigNumber(count));
-        BigNumber *temp4 = minusBigNumbers(temp, temp3);
-        destroyBigNumber(temp3);
-        for (int j = 0; j < bn1->size; j++) {
-            temp->digits[j] = temp4->digits[j];
-        }
-        destroyBigNumber(temp4);
     }
+    while (result->digits[result->size - 1] == 0) result->size--;
     destroyBigNumber(temp);
     return result;
 }
