@@ -35,22 +35,23 @@ int main(int argc, char** argv) {
     printBigNumber(bn3);
     printf("\n");
 
-    // // copyBigNumber
-    // printf("bn4 = copyBigNumber bn1: ");
-    // BigNumber *bn4 = copyBigNumber(bn1);
-    // printBigNumber(bn4);
-    // printf("\n");
+    // copyBigNumber
+    printf("bn4 = copyBigNumber bn1: ");
+    BigNumber *bn4 = copyBigNumber(bn1);
+    printBigNumber(bn4);
+    printf("\n");
 
-    // // destroyBigNumber
-    // printf("destroyBigNumber bn1: ");
-    // destroyBigNumber(bn1);
-    // printf("\n");
+    // destroyBigNumber
+    printf("destroyBigNumber bn1: ");
+    destroyBigNumber(bn1);
+    printBigNumber(bn1);
+    printf("\n");
 
-    // // multiplyBigNumbers
-    // printf("bn5 = multiplyBigNumbers bn2, bn3: ");
-    // BigNumber *bn5 = multiplyBigNumbers(bn2, bn3);
-    // printBigNumber(bn5);
-    // printf("\n");
+    // multiplyBigNumbers
+    printf("bn5 = multiplyBigNumbers bn2, bn3: ");
+    BigNumber *bn5 = multiplyBigNumbers(bn2, bn3);
+    printBigNumber(bn5);
+    printf("\n");
     
     // // minusBigNumbers
     // printf("bn6 = minusBigNumbers bn5, bn4: ");

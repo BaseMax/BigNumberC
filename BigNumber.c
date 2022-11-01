@@ -50,6 +50,7 @@ BigNumber* createAndSetBigNumber(int *digits, int size) {
  * @param bn 
  */
 void destroyBigNumber(BigNumber *bn) {
+    bn->size = 0;
     free(bn->digits);
     free(bn);
 }
@@ -84,15 +85,21 @@ void printBigNumber(BigNumber *bn) {
  * @return BigNumber* 
  */
 BigNumber* addBigNumbers(BigNumber *bn1, BigNumber *bn2) {
-    BigNumber *result = createBigNumber(bn1->size + 1);
-    int carry = 0;
-    for (int i = 0; i < bn1->size; i++) {
-        int sum = bn1->digits[i] + bn2->digits[i] + carry;
-        result->digits[i] = sum % 10;
-        carry = sum / 10;
+    int size = bn1->size > bn2->size ? bn1->size : bn2->size;
+    BigNumber *bn3 = createBigNumber(size + 1);
+    for (int i = 0; i < size; i++) {
+        int digit1 = i < bn1->size ? bn1->digits[i] : 0;
+        int digit2 = i < bn2->size ? bn2->digits[i] : 0;
+        bn3->digits[i] = digit1 + digit2;
     }
-    result->digits[bn1->size] = carry;
-    return result;
+    for (int i = 0; i < size; i++) {
+        if (bn3->digits[i] >= 10) {
+            bn3->digits[i] -= 10;
+            bn3->digits[i + 1]++;
+        }
+    }
+    if (bn3->digits[size] == 0) bn3->size--;
+    return bn3;
 }
 
 /**
