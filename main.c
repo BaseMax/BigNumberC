@@ -42,10 +42,10 @@ int main(int argc, char** argv) {
     printf("\n");
 
     // destroyBigNumber
-    printf("destroyBigNumber bn1: ");
-    destroyBigNumber(bn1);
-    printBigNumber(bn1);
-    printf("\n");
+    // printf("destroyBigNumber bn1: ");
+    // destroyBigNumber(bn1);
+    // printBigNumber(bn1);
+    // printf("\n");
 
     // multiplyBigNumbers
     printf("bn5 = multiplyBigNumbers bn2, bn3: ");
@@ -53,11 +53,11 @@ int main(int argc, char** argv) {
     printBigNumber(bn5);
     printf("\n");
     
-    // // minusBigNumbers
-    // printf("bn6 = minusBigNumbers bn5, bn4: ");
-    // BigNumber *bn6 = minusBigNumbers(bn5, bn4);
-    // printBigNumber(bn6);
-    // printf("\n");
+    // minusBigNumbers
+    printf("bn6 = minusBigNumbers bn5, bn4: ");
+    BigNumber *bn6 = minusBigNumbers(bn5, bn4);
+    printBigNumber(bn6);
+    printf("\n");
 
     // // divideBigNumbers
     // printf("bn7 = divideBigNumbers bn5, bn4: ");

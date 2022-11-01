@@ -50,7 +50,6 @@ BigNumber* createAndSetBigNumber(int *digits, int size) {
  * @param bn 
  */
 void destroyBigNumber(BigNumber *bn) {
-    bn->size = 0;
     free(bn->digits);
     free(bn);
 }
@@ -62,6 +61,7 @@ void destroyBigNumber(BigNumber *bn) {
  */
 void printBigNumber(BigNumber *bn) {
     if (bn == NULL) printf("NULL");
+    else if(bn->size == 0) printf("0");
     else {
         int isZero = 1;
         for (int i = 0; i < bn->size; i++) {
@@ -110,17 +110,20 @@ BigNumber* addBigNumbers(BigNumber *bn1, BigNumber *bn2) {
  * @return BigNumber* 
  */
 BigNumber* multiplyBigNumbers(BigNumber *bn1, BigNumber *bn2) {
-    BigNumber *result = createBigNumber(bn1->size + bn2->size);
+    BigNumber *bn3 = createBigNumber(bn1->size + bn2->size);
     for (int i = 0; i < bn1->size; i++) {
         for (int j = 0; j < bn2->size; j++) {
-            result->digits[i + j] += bn1->digits[i] * bn2->digits[j];
+            bn3->digits[i + j] += bn1->digits[i] * bn2->digits[j];
         }
     }
-    for (int i = 0; i < result->size; i++) {
-        result->digits[i + 1] += result->digits[i] / 10;
-        result->digits[i] %= 10;
+    for (int i = 0; i < bn3->size; i++) {
+        if (bn3->digits[i] >= 10) {
+            bn3->digits[i + 1] += bn3->digits[i] / 10;
+            bn3->digits[i] %= 10;
+        }
     }
-    return result;
+    while (bn3->digits[bn3->size - 1] == 0) bn3->size--;
+    return bn3;
 }
 
 /**
