@@ -65,6 +65,14 @@ BigNumber* addBigNumbers(BigNumber *bn1, BigNumber *bn2);
 BigNumber* multiplyBigNumbers(BigNumber *bn1, BigNumber *bn2);
 
 /**
+ * @brief Deep copy a Big Number
+ * 
+ * @param bn
+ * @return BigNumber* 
+ */
+BigNumber* copyBigNumber(BigNumber *bn);
+
+/**
  * @brief Minus two Big Numbers
  * 
  * @param bn1
