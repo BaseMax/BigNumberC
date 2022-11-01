@@ -60,16 +60,16 @@ int main(int argc, char** argv) {
     printf("\n");
 
     // divideBigNumbers
-    printf("bn7 = divideBigNumbers bn5, bn4: ");
+    printf("bn7 = divideBigNumbers bn5, bn6: ");
     BigNumber *bn7 = divideBigNumbers(bn5, bn6);
     printBigNumber(bn7);
     printf("\n");
 
-    // // remainderBigNumbers
-    // printf("bn8 = remainderBigNumbers bn5, bn4: ");
-    // BigNumber *bn8 = remainderBigNumbers(bn5, bn6);
-    // printBigNumber(bn8);
-    // printf("\n");
+    // remainderBigNumbers
+    printf("bn8 = remainderBigNumbers bn5, bn6: ");
+    BigNumber *bn8 = remainderBigNumbers(bn5, bn6);
+    printBigNumber(bn8);
+    printf("\n");
 
     return 0;
 }

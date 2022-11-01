@@ -198,30 +198,13 @@ BigNumber* remainderBigNumbers(BigNumber *bn1, BigNumber *bn2) {
     BigNumber *result = createBigNumber(bn1->size);
     BigNumber *temp = createBigNumber(bn1->size);
     for (int i = bn1->size - 1; i >= 0; i--) {
-        for (int j = bn1->size - 1; j > i; j--) {
-            temp->digits[j] = temp->digits[j - 1];
-        }
         temp->digits[i] = bn1->digits[i];
-        int count = 0;
-        while (1) {
-            BigNumber *temp2 = multiplyBigNumbers(bn2, createBigNumber(1));
-            if (temp2->digits[0] > temp->digits[0]) {
-                break;
-            }
-            destroyBigNumber(temp2);
-            count++;
+        while (compareBigNumbers(temp, bn2) >= 0) {
+            temp = minusBigNumbers(temp, bn2);
+            result->digits[i]++;
         }
-        BigNumber *temp3 = multiplyBigNumbers(bn2, createBigNumber(count));
-        BigNumber *temp4 = minusBigNumbers(temp, temp3);
-        destroyBigNumber(temp3);
-        for (int j = 0; j < bn1->size; j++) {
-            temp->digits[j] = temp4->digits[j];
-        }
-        destroyBigNumber(temp4);
     }
-    for (int i = 0; i < bn1->size; i++) {
-        result->digits[i] = temp->digits[i];
-    }
+    while (result->digits[result->size - 1] == 0) result->size--;
     destroyBigNumber(temp);
     return result;
 }
