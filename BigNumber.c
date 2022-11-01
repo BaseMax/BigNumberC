@@ -9,6 +9,9 @@
 BigNumber* createBigNumber(int size) {
     BigNumber *bn = malloc(sizeof(BigNumber));
     bn->digits = malloc(sizeof(int) * size);
+    for (int i = 0; i < size; i++) {
+        bn->digits[i] = 0;
+    }
     bn->size = size;
     return bn;
 }
@@ -57,12 +60,18 @@ void destroyBigNumber(BigNumber *bn) {
  * @param bn 
  */
 void printBigNumber(BigNumber *bn) {
-    for (int i = bn->size - 1; i >= 0; i--) {
-        printf("%d", bn->digits[i]);
+    if (bn == NULL) printf("NULL");
+    else {
+        int isZero = 1;
+        for (int i = 0; i < bn->size; i++) {
+            if (bn->digits[i] != 0) {
+                isZero = 0;
+                break;
+            }
+        }
+        if (isZero) printf("0");
+        else for (int i = bn->size - 1; i >= 0; i--) printf("%d", bn->digits[i]);
     }
-    // for (int i = 0; i < bn->size; i++) {
-    //     printf("%d", bn->digits[i]);
-    // }
 
     printf("\n");
 }
