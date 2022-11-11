@@ -1,4 +1,6 @@
-# BigNumberC
+# Big Number C (BigNumberC)
+
+The Big Number C library is a C library for arbitrary precision arithmetic. It can be used to perform arithmetic operations on numbers of arbitrary size. It is written in C and is designed to be portable and efficient. You can work with numbers of any size, and the library will automatically allocate memory as needed.
 
 ## BigNumber Functions
 
@@ -128,3 +130,12 @@ BigNumber* remainderBigNumbers(BigNumber *bn1, BigNumber *bn2)
  */
 int compareBigNumbers(BigNumber *bn1, BigNumber *bn2)
 ```
+
+## TODO
+
+- [ ] Memory optimization
+- [ ] Add more functions
+- [ ] Add more tests
+- [ ] Add more documentation
+
+© Copyright 2022, Max Base
